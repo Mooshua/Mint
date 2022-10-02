@@ -19,13 +19,16 @@ public class LuaEntityList : List<LuaEntity>
 		var ent = new Entity() { ClassName = classname };
 		Source.Add(ent);
 
-		var lua = new LuaEntity(ent);
+		var lua = new LuaEntity(ent)
+		{
+			Target = new Prefix().Unique()
+		};
 		Instance.Add(lua);
 
 		return lua;
 	}
 
-	public LuaEntity? FirstWithPrefix(Prefix pre)
+	public LuaEntity? Find(Prefix pre)
 	{
 		foreach (LuaEntity entity in Instance)
 		{
@@ -36,9 +39,9 @@ public class LuaEntityList : List<LuaEntity>
 		return null;
 	}
 	
-	public LuaEntity? FirstWithPrefix(string pre)
+	public LuaEntity? Find(string pre)
 	{
-		return FirstWithPrefix(new Prefix(pre));
+		return Find(new Prefix(pre));
 	}
 	
 }

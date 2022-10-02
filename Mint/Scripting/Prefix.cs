@@ -13,6 +13,17 @@ public class Prefix
 	
 	public String Value { get; private set; }
 
+	public Prefix Extend(Prefix child)
+	{
+
+		return new Prefix()
+		{
+			Parent = this,
+			Value = child
+		};
+
+	}
+	
 	public Prefix Extend(string child)
 	{
 

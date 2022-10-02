@@ -4,6 +4,8 @@ using ICSharpCode.SharpZipLib.Zip;
 
 using LibBSP;
 
+using NLua;
+
 namespace Mint.Scripting;
 
 public class LuaEvent
@@ -114,5 +116,34 @@ public class LuaEvent
 			unknown0 = null,
 			unknown1 = null
 		};
+	}
+
+	public static LuaEvent Table(LuaTable t)
+	{
+		float delay = 0;
+		int refire = 0;
+
+		var delaySuccessful = t["Delay"] is not null ? float.TryParse(t["Delay"].ToString(), out delay) : false;
+		var refireSuccessful = t["Refire"] is not null ? int.TryParse(t["Refire"].ToString(), out refire) : false;
+
+		
+		
+		var ev = new LuaEvent()
+		{
+			Output = t["Output"].ToString() ?? throw new InvalidOperationException(),
+			Entity = t["Entity"].ToString() ?? throw new InvalidOperationException(),
+			Input = t["Input"].ToString() ?? throw new InvalidOperationException(),
+			Override = (t["Param"] is not null ? t["Param"].ToString() : string.Empty),
+			Delay = (delaySuccessful ? delay : 0),
+			Refire = (refireSuccessful ? refire : -1),
+		};
+
+		return ev;
+	}
+	
+	public static implicit operator LuaEvent(LuaTable t)
+	{
+		return Table(t);
+
 	}
 }

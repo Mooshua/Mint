@@ -1,6 +1,10 @@
-﻿using LibBSP;
+﻿using System.Numerics;
+
+using LibBSP;
 
 using Mint.Common;
+
+using NLua;
 
 using Spectre.Console;
 
@@ -83,6 +87,12 @@ public class LuaEntity
 		Events.Add(ev);
 		return this;
 	}
+	
+	public LuaEntity AddEvent(LuaTable ev)
+	{
+		Events.Add(ev);
+		return this;
+	}
 
 	internal LuaEntity(Entity source)
 	{
@@ -107,5 +117,10 @@ public class LuaEntity
 			Events.Add( LuaEvent.From(sourceConnection) );
 		}
 
+	}
+
+	public override string ToString()
+	{
+		return Target.ToString();
 	}
 }

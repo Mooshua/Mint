@@ -32,6 +32,12 @@ public class LuaState : State
 			Engine["Event"] = new LuaEvent();
 			Engine["Prefix"] = new Prefix();
 
+			//	Add the current map directory as a package
+			( Engine["package"] as LuaTable )["path"] += $";{Mutable.Reader.BspFile.Directory.FullName}/?.lua";
+			
+			//	Attempt to make LuaEvent an autoconvert. Possibly works?
+			Engine.RegisterLuaClassType(typeof(LuaEvent), typeof(LuaTable));
+
 			//Engine.RegisterFunction("Prefix.Unique", typeof(Prefix).GetMethod("Unique"));
 			//Engine.RegisterFunction("Entity.New", typeof(LuaEntityList).GetMethod("New"));
 
