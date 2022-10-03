@@ -1,4 +1,6 @@
-﻿namespace Mint.Common;
+﻿using System;
+
+namespace Mint.Common;
 
 public class SilentException : Exception
 {

@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mint", "Mint\Mint.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mint.Units", "Mint.Units\Mint.Units.csproj", "{D9CE24EF-909F-4A1F-AC34-B625C5D160D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibBSP", "LibBSP\LibBSP\LibBSP.csproj", "{33E4FFCA-8D0B-4089-AFD2-527547531578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mint.LibBSP", "Mint.LibBSP\LibBSP\LibBSP.csproj", "{33E4FFCA-8D0B-4089-AFD2-527547531578}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

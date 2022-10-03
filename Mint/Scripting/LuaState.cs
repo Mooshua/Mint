@@ -14,6 +14,16 @@ public class LuaState : State
 {
 
 	protected Lua Engine { get; } = new Lua();
+	
+	public void SetupGlobals()
+	{
+		Engine["Map"] = Mutable.Reader.BspFile.Name;
+	}
+
+	public void ExecuteWildcard()
+	{
+		var func = Engine.LoadFile(Mutable.Reader.BspFile.Directory.FullName + "all.lua");
+	}
 
 	public override void Execute()
 	{
@@ -34,7 +44,7 @@ public class LuaState : State
 
 			//	Add the current map directory as a package
 			( Engine["package"] as LuaTable )["path"] += $";{Mutable.Reader.BspFile.Directory.FullName}/?.lua";
-			
+
 			//	Attempt to make LuaEvent an autoconvert. Possibly works?
 			Engine.RegisterLuaClassType(typeof(LuaEvent), typeof(LuaTable));
 
@@ -51,7 +61,7 @@ public class LuaState : State
 */
 			FancyConsole.Write("Task:Lua","Loading lua");
 			
-			var func = Engine.LoadFile(Mutable.Reader.BspFile.FullName.Substring(0, Mutable.Reader.BspFile.FullName.Length - 4) + ".lua");
+			var func = Engine.LoadFile(Mutable.Reader.BspFile.Directory.FullName + Mutable.Reader.BspFile.Name + ".lua");
 			
 			FancyConsole.Write("Task:Lua","Executing lua");
 
